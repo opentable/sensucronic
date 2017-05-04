@@ -1,0 +1,29 @@
+#! /usr/bin/env ruby
+#
+#   sensucronic
+#
+# DESCRIPTION:
+#   a cron wrapper to integrate the result of cron execution with sensu
+#   it runs your cronjob,  capturing the output and exit code and sends
+#   the result to sensu
+# 
+# PLATFORMS:
+#   Linux
+#
+# DEPENDENCIES:
+#   gem: sensu-plugin
+#
+# USAGE:
+#   sensucronic [ OPTIONS ] [ -- ] COMMAND [ ARGS ]
+#
+# NOTES:
+#
+# LICENSE:
+#   fess <fess-sensuchronic@fess.org>
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
+
+require 'sensucronic'
+
+Sensuchronic.new.run

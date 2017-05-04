@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "sensu-plugin", "~> 2.0"
+  s.add_runtime_dependency "mixlib-cli", ">= 1.0" # optimistic
 
   s.add_development_dependency "bundler", "~> 1.14"
   s.add_development_dependency "rake", "~> 10.0"
