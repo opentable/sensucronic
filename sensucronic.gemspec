@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "mixlib-cli", ">= 1.0" # optimistic
 
   s.add_development_dependency "bundler", "~> 1.14"
-  s.add_development_dependency "rake", "~> 10.0"
-  s.add_development_dependency "rspec", "~> 3.0"
-  s.add_development_dependency "pry"
+  s.add_development_dependency "rake",    "~> 10.0"
+  s.add_development_dependency "rspec",   "~> 3.0"
 end

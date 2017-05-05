@@ -26,4 +26,4 @@
 
 require 'sensucronic'
 
-Sensuchronic.new.run
+Sensucronic.new.cli

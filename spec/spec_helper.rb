@@ -1,5 +1,5 @@
-require "bundler/setup"
-require "sensucronic"
+require 'bundler/setup'
+require 'sensucronic'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
