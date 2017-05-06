@@ -105,6 +105,8 @@ Usage: sensucronic (options)
 ## TODO
 - accept options to add extra fields to the output
 - accept options to configure the status in response to the exitcodes.  (always warn,  always crit ) 
+- allow specifying alternate host, currently the sensu agent must be running on the local box. 
+- maybe submit via http to client http api on another host
 
 ## Development
 
