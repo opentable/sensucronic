@@ -120,6 +120,8 @@ prompt% sensucronic --field 'team: blah' --field foo:bar --field output:blah --d
 
 
 ## TODO
+
+- allow a system wide configuration to set default attributes for a node to be included in the report.
 - accept options to configure the status in response to the exitcodes.  (always warn,  always crit ) 
 - allow specifying alternate host, currently the sensu agent must be running on the local box. 
 - maybe submit via http to client http api on another host
