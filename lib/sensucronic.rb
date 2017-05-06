@@ -15,6 +15,13 @@ class Sensucronic
     :default     => false,
     :description => 'output result to stdout only'
 
+  option :field,
+    :short       => '-f "key: value"',
+    :long        => '--field "key: value"',
+    :default     => [],
+    :proc        => proc { |f,cur| cur << f },
+    :description => 'add a field to the json report'
+
   option :port,
     :short       => '-p PORT',
     :long        => '--port PORT',
@@ -115,16 +122,23 @@ class Sensucronic
     end
   end
 
+  def fields
+    config[:field]
+      .map { |f| f.split(/:\s*/,2) }
+      .each_with_object({}) { |(k,v), h| h[k.to_sym] = v }
+  end
+
   def report
     {
       command:  Shellwords.shelljoin(cli_arguments),
       output:   output,
       status:   sensu_status,
       exitcode: exitcode,
-      agent:    self.class.to_s.downcase
+      agent:    self.class.to_s.downcase,
     }.tap do |r|
       r[:exitsignal] = status.termsig  if status.termsig
       r[:source]     = config[:source] if config[:source]
+      r.update(fields) { |k,o,n| o }
     end
   end
 

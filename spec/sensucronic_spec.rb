@@ -75,6 +75,41 @@ describe Sensucronic do
       it { expect(output).to eq "hi\n" }
     end
 
+    context 'with --field "team: name"' do
+      let(:cmd) { ['--field', "team: teamname", 'echo hi'] }
+      it 'should set the team attribute to teamname' do
+        expect(report[:team]).to eq "teamname"
+      end
+      it { expect(output).to eq "hi\n" }
+    end
+
+    context 'with --field "team: name" --field foo:bar' do
+      let(:cmd) do 
+        [
+          '--field', 'team: teamname',
+          '--field', 'foo:bar', 
+          'echo hi'
+        ]
+      end
+
+      it 'should set the team attribute to teamname' do
+        expect(report[:team]).to eq "teamname"
+      end
+      it 'should set the foo attribute to bar' do
+        expect(report[:foo]).to eq "bar"
+      end
+      it { expect(output).to eq "hi\n" }
+    end
+
+    context 'with --field "command: foo"' do
+      let(:cmd) { ['--field', "command: foo", 'echo hi'] }
+      it 'should set the team attribute to teamname' do
+        expect(report[:team]).to eq "teamname"
+      end
+      it { expect(report[:command]).to eq "echo\\ hi" }
+      it { expect(report['command']).to be_nil }
+    end
+
   end
 
 end

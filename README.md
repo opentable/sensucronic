@@ -8,8 +8,6 @@ sensu ecosystem
 
 ## Installation
 
-TODO: release gem so this works.
-
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -35,6 +33,19 @@ sensucronic [ OPTIONS ] [ -- ] 'COMMAND [ ARGS ]'
 
 sensucronic runs COMMAND with ARGS it generates a json report and submits
 it to the sensu-client input socket
+
+use --help to view options
+```
+prompt% sensucronic --help 
+s@otfess-3-1645% bundle exec exe/sensucronic --help 
+Usage: sensucronic (options)
+    -d, --dry-run                    output result to stdout only
+    -f, --field "key: value"         add a field to the json report
+    -h, --help                       print this message
+    -p, --port PORT                  the port number for the sensu client input socket
+    -s, --source SOURCE              set the source attribute on the sensu result
+
+```
 
 the OPTION --dryrun causes sensucronic to issue it's report to stdout
 instead of the sensu client input socket.
@@ -92,18 +103,24 @@ prompt% sensucronic --dry-run  'exit 3'
 
 ```
 
-use --help to view options
+the option --field allows you to add arbitrary attributes to the json
+report. you can repeat it as often as you need. note that you can't override the built in fields.
+
 ```
-prompt% sensucronic --help 
-Usage: sensucronic (options)
-    -d, --dry-run                    output result to stdout only
-    -h, --help                       print this message
-    -p, --port PORT                  the port number for the sensu client input socket
-    -s, --source SOURCE              set the source attribute on the sensu result
+prompt% sensucronic --field 'team: blah' --field foo:bar --field output:blah --dry-run 'echo hi; exit 20'
+{
+  "command": "echo\\ hi\\;\\ exit\\ 20",
+  "output": "hi\n",
+  "status": 3,
+  "exitcode": 20,
+  "agent": "sensucronic",
+  "team": "blah",
+  "foo": "bar"
+}
 ```
 
+
 ## TODO
-- accept options to add extra fields to the output
 - accept options to configure the status in response to the exitcodes.  (always warn,  always crit ) 
 - allow specifying alternate host, currently the sensu agent must be running on the local box. 
 - maybe submit via http to client http api on another host
