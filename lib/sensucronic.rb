@@ -32,7 +32,8 @@ class Sensucronic
     :boolean      => true,
     :tail         => true,
     :show_options => true,
-    :description  => 'print this message'
+    :description  => 'print this message',
+    :exit         => 0
 
   attr :stdout
   attr :stderr
