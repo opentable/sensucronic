@@ -26,8 +26,12 @@ Or install it yourself as:
 
 ## Usage
 
+```
 sensucronic [ OPTIONS ] [ -- ] COMMAND [ ARGS ]
+```
+```
 sensucronic [ OPTIONS ] [ -- ] 'COMMAND [ ARGS ]'
+```
 
 sensucronic runs COMMAND with ARGS it generates a json report and submits
 it to the sensu-client input socket
