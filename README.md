@@ -37,7 +37,6 @@ it to the sensu-client input socket
 use --help to view options
 ```
 prompt% sensucronic --help 
-s@otfess-3-1645% bundle exec exe/sensucronic --help 
 Usage: sensucronic (options)
     -d, --dry-run                    output result to stdout only
     -f, --field "key: value"         add a field to the json report
